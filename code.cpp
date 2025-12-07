@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+int sum_ascii(string);
+
 int main() {
     char a = 'A';
     cout << a << endl;
@@ -8,6 +10,12 @@ int main() {
     int b = 66;
     cout << b << endl;
     cout << (char) b << endl;
+    
+    
+    string c = "bazingalingaling";
+    cout << sum_ascii(c) << endl; 
+    
+    
     return 0;
 }
 /*
@@ -17,3 +25,12 @@ These targets are present in the dataset and can be used for testing:
 666D109AA22E
 E1D2665B21EA
 */
+
+int sum_ascii(string str) {
+    int sum = 0;
+    for (char c : str) {
+        cout << c << endl;
+        sum += (int) c;
+    }
+    return sum;
+}
