@@ -1,11 +1,15 @@
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <list>
 using namespace std;
 
-int sum_ascii(string);
+int gen_hash_index(string);
+void display(map <int, list<string>>);
 
 int main() {
-    int sum = 0;
+    map <int, list<string>> hash_table;
+
     //File open
 	ifstream file;
 	file.open("data.txt");
@@ -13,14 +17,12 @@ int main() {
 	    cout << "Failed to open file" << endl;
 	    return 1;
 	}
+    //File Populating
     string line;
     while (file >> line) {
-        sum += sum_ascii(line);
+        int hashindex = gen_hash_index(line);
+        hash_table[hashindex].push_back(line);
     }
-    string c = "bazingalingaling";
-    cout << sum_ascii(c) << endl; 
-    cout << "SUM: " << sum << endl;
-    
     
     return 0;
 }
@@ -32,10 +34,25 @@ These targets are present in the dataset and can be used for testing:
 E1D2665B21EA
 */
 
-int sum_ascii(string str) {
+int gen_hash_index(string str) {
     int sum = 0;
     for (char c : str) {
         sum += (int) c;
     }
     return sum;
+}
+
+void display(map <int, list<string>> data, int numOfEntries) {
+    int count = 1;
+    for (auto pair : data) { //Loops through each map data
+        cout << "Hash index: " << pair.first; 
+        for (auto value : pair.second) { //Loops through the list
+
+        }
+
+        if (count == numOfEntries)
+            return;
+        count++;
+    }
+    cout << endl;
 }
