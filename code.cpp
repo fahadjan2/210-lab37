@@ -1,19 +1,25 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 int sum_ascii(string);
 
 int main() {
-    char a = 'A';
-    cout << a << endl;
-    cout << (int) a << endl;
-    int b = 66;
-    cout << b << endl;
-    cout << (char) b << endl;
-    
-    
+    int sum = 0;
+    //File open
+	ifstream file;
+	file.open("data.txt");
+	if (!file.is_open()) {
+	    cout << "Failed to open file" << endl;
+	    return 1;
+	}
+    string line;
+    while (file >> line) {
+        sum += sum_ascii(line);
+    }
     string c = "bazingalingaling";
     cout << sum_ascii(c) << endl; 
+    cout << "SUM: " << sum << endl;
     
     
     return 0;
@@ -29,7 +35,6 @@ E1D2665B21EA
 int sum_ascii(string str) {
     int sum = 0;
     for (char c : str) {
-        cout << c << endl;
         sum += (int) c;
     }
     return sum;
